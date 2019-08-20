@@ -202,7 +202,9 @@ flathub org.libreoffice.LibreOffice `#Open-source office suite` \
 ###
 
 # Vim-like navigation in bash and tmux
-echo "set -o vi" >> $HOME/.bashrc
+if !(grep -q "set -o vi" "$HOME/.bashrc"); then
+	echo "set -o vi" >> $HOME/.bashrc
+fi
 
 # Configure sensors (defaults)
 sensors-detect --auto
