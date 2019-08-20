@@ -66,6 +66,7 @@ sudo dnf install \
 -y \
 vim `#The best text editor` \
 htop `#A more visual top` \
+tmux `#Terminal multiplexer` \
 lm_sensors `#Show your systems Temparature` \
 pv `#pipe viewer - see what happens between the | with output | pv | receiver ` \
 tuned `#Tuned can optimize your performance according to metrics. tuned-adm profile powersave can help you on laptops, alot` \
@@ -133,29 +134,6 @@ nautilus-image-converter \
 nautilus-search-tool \
 file-roller-nautilus `#More Archives supported in nautilus` \
 gtkhash-nautilus `#To get a file hash via gui` \
-`# GIMP` \
-#gimp-data-extras \
-#gimp-dbp \
-#gimp-dds-plugin \
-#gimp-elsamuko \
-#gimp-focusblur-plugin \
-#gimp-fourier-plugin \
-#gimpfx-foundry.noarch \
-#gimp-gap \
-#gimp-high-pass-filter \
-#gimp-layer-via-copy-cut \
-#gimp-lensfun \
-#gimp-lqr-plugin \
-#gimp-luminosity-masks \
-#gimp-paint-studio \
-#gimp-resynthesizer \
-#gimp-save-for-web \
-#gimp-wavelet-decompose \
-#gimp-wavelet-denoise-plugin \
-#gmic-gimp \
-#GREYCstoration-gimp 
-`# LibreOffice` \
-# libreoffice-gallery-vrt-network-equipment `#Network Icon Preset for LibreOffice` \
 
 
 ###
@@ -190,9 +168,22 @@ calibre `#Ebook management` \
 gimp `#The Image Editing Powerhouse - and its plugins` \
 git `#VCS done right` \
 gnome-tweak-tool `#Your central place to make gnome like you want` \
-inkscape  `#Working with .svg files` \
 spamassassin `#Dep to make sure it is locally installed for Evolution` \
-transmission-gtk `#Torrent Client` 
+transmission `#Torrent client` \
+dconf-editor `#GUI GSettings editor` 
+
+
+###
+# Flatpak
+###
+
+# Configure flathub
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# Install flatpaks
+flatpak install \
+-y \
+flathub org.libreoffice.LibreOffice `#Open-source office suite` \
 
 
 ###
@@ -201,11 +192,18 @@ transmission-gtk `#Torrent Client`
 # or set a more specific tuned profile
 ###
 
+# Vim-like navigation in bash and tmux
+echo "set -o vi" >> $HOME/.bashrc
+
+# Configure sensors (defaults)
+sensors-detect --auto
+
+# Configure powermode
 sudo systemctl enable --now tuned
-#sudo tuned-adm profile balanced
+sudo tuned-adm profile balanced
 
 #Performance:
-sudo tuned-adm profile desktop
+#sudo tuned-adm profile desktop
 
 #Virtual Machine Host:
 #sudo tuned-adm profile virtual-host
