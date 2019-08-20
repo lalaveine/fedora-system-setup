@@ -96,6 +96,7 @@ gvfs-fuse `#gnome<>fuse` \
 gvfs-mtp `#gnome<>android` \
 gvfs-nfs `#gnome<>ntfs` \
 gvfs-smb `#gnome<>samba` \
+dnf-plugins-core `#Provides the commands to manage your DNF repositories from the command line.` \
 
 
 ###
@@ -157,6 +158,14 @@ vagrant-libvirt `#integration with libvirt` \
 virt-manager `#A gui to manage virtual machines` \
 libguestfs-tools `#Resize Vm Images and convert them` \
 # ansible `#Awesome to manage multiple machines or define states for systems` \
+
+# Docker
+# Add repo
+sudo dnf config-manager \
+    --add-repo \
+    https://download.docker.com/linux/fedora/docker-ce.repo
+# Install docker
+sudo dnf -y install docker-ce
 
 ###
 # Useful applications 
