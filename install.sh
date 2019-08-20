@@ -173,8 +173,8 @@ sudo dnf install \
 vagrant `#Virtual Machine management and autodeployment` \
 vagrant-libvirt `#integration with libvirt` \
 virt-manager `#A gui to manage virtual machines` \
+libguestfs-tools `#Resize Vm Images and convert them` \
 # ansible `#Awesome to manage multiple machines or define states for systems` \
-libguestfs-tools `#Resize Vm Images and convert them` 
 
 ###
 # Useful applications 
@@ -188,21 +188,8 @@ gimp `#The Image Editing Powerhouse - and its plugins` \
 git `#VCS done right` \
 gnome-tweak-tool `#Your central place to make gnome like you want` \
 inkscape  `#Working with .svg files` \
-# mumble `#Talk with your friends` \
 spamassassin `#Dep to make sure it is locally installed for Evolution` \
 transmission-gtk `#Torrent Client` 
-# hexchat `#Irc Client` 
-
-
-###
-# Remove some un-needed stuff
-###
-
-sudo dnf remove \
--y \
-gnome-shell-extension-background-logo `#Tasteful but nah` \
-totem `#With mpv installed totem became a little useless` \
-flowblade `#Sadly has really outdated mlt dependencies`
 
 
 ###
@@ -233,9 +220,6 @@ sudo systemctl enable --now libvirtd
 ###
 # Theming and GNOME Options
 ###
-
-# Tilix Dark Theme
-gsettings set com.gexperts.Tilix.Settings theme-variant 'dark'
 
 #Gnome Shell Theming
 gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark'
