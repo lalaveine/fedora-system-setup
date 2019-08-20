@@ -97,6 +97,7 @@ gvfs-mtp `#gnome<>android` \
 gvfs-nfs `#gnome<>ntfs` \
 gvfs-smb `#gnome<>samba` \
 dnf-plugins-core `#Provides the commands to manage your DNF repositories from the command line.` \
+xorg-x11-drv-amdgpu `#AMDGPU driver for X11` \
 
 
 ###
