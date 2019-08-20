@@ -80,6 +80,7 @@ nload `#Network Load Monitor` \
 # meld `#Quick Diff Tool` \
 # nethogs `#Whats using all your traffic? Now you know!` \
 
+
 ###
 # Install system utils 
 ###
@@ -94,7 +95,7 @@ gvfs-fuse `#gnome<>fuse` \
 gvfs-mtp `#gnome<>android` \
 gvfs-nfs `#gnome<>ntfs` \
 gvfs-smb `#gnome<>samba` \
-# python3-devel `#Python Development Gear` \
+
 
 ###
 # Install themes 
@@ -105,6 +106,7 @@ sudo dnf install \
 arc-theme `#A more comfortable GTK/Gnome-Shell Theme` \
 breeze-cursor-theme `#A more comfortable Cursor Theme from KDE` \
 papirus-icon-theme `#A quite nice icon theme` 
+
 
 ###
 # Install fonts 
@@ -132,28 +134,29 @@ nautilus-search-tool \
 file-roller-nautilus `#More Archives supported in nautilus` \
 gtkhash-nautilus `#To get a file hash via gui` \
 `# GIMP` \
-gimp-data-extras \
-gimp-dbp \
-gimp-dds-plugin \
-gimp-elsamuko \
-gimp-focusblur-plugin \
-gimp-fourier-plugin \
-gimpfx-foundry.noarch \
-gimp-gap \
-gimp-high-pass-filter \
-gimp-layer-via-copy-cut \
-gimp-lensfun \
-gimp-lqr-plugin \
-gimp-luminosity-masks \
-gimp-paint-studio \
-gimp-resynthesizer \
-gimp-save-for-web \
-gimp-wavelet-decompose \
-gimp-wavelet-denoise-plugin \
-gmic-gimp \
-GREYCstoration-gimp 
+#gimp-data-extras \
+#gimp-dbp \
+#gimp-dds-plugin \
+#gimp-elsamuko \
+#gimp-focusblur-plugin \
+#gimp-fourier-plugin \
+#gimpfx-foundry.noarch \
+#gimp-gap \
+#gimp-high-pass-filter \
+#gimp-layer-via-copy-cut \
+#gimp-lensfun \
+#gimp-lqr-plugin \
+#gimp-luminosity-masks \
+#gimp-paint-studio \
+#gimp-resynthesizer \
+#gimp-save-for-web \
+#gimp-wavelet-decompose \
+#gimp-wavelet-denoise-plugin \
+#gmic-gimp \
+#GREYCstoration-gimp 
 `# LibreOffice` \
 # libreoffice-gallery-vrt-network-equipment `#Network Icon Preset for LibreOffice` \
+
 
 ###
 # GNOME Extentions 
@@ -163,6 +166,7 @@ sudo dnf install \
 gnome-shell-extension-dash-to-dock `#dash for gnome` \
 gnome-shell-extension-topicons-plus `#Notification Icons for gnome` \
 gnome-shell-extension-user-theme `#Enables theming the gnome shell`
+
 
 ###
 # Virtualization 
@@ -183,7 +187,6 @@ libguestfs-tools `#Resize Vm Images and convert them` \
 sudo dnf install \
 -y \
 calibre `#Ebook management` \
-filezilla `#S/FTP Access` \
 gimp `#The Image Editing Powerhouse - and its plugins` \
 git `#VCS done right` \
 gnome-tweak-tool `#Your central place to make gnome like you want` \
@@ -199,10 +202,10 @@ transmission-gtk `#Torrent Client`
 ###
 
 sudo systemctl enable --now tuned
-sudo tuned-adm profile balanced
+#sudo tuned-adm profile balanced
 
 #Performance:
-#sudo tuned-adm profile desktop
+sudo tuned-adm profile desktop
 
 #Virtual Machine Host:
 #sudo tuned-adm profile virtual-host
