@@ -217,6 +217,7 @@ flatpak install \
 flathub \
 org.libreoffice.LibreOffice `#Open-source office suite` \
 org.telegram.desktop `#Pavel Durov's messenger` \
+org.videolan.VLC \
 tv.kodi.Kodi
 
 
