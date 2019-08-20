@@ -59,17 +59,11 @@ sudo dnf distro-sync -y
 
 
 ###
-# Install base packages and applications
+# Install CLI tools 
 ###
 
 sudo dnf install \
 -y \
-
-
-###
-# CLI tools 
-###
-
 vim `#The best text editor` \
 htop `#A more visual top` \
 lm_sensors `#Show your systems Temparature` \
@@ -80,17 +74,18 @@ wavemon `#a cli wifi status tool` \
 youtube-dl `#Allows you to download and save youtube videos but also to open their links by dragging them into mpv!` \
 borgbackup `#If you need backups, this is your tool for it` \
 iotop  `#disk usage cli monitor` \
-# meld `#Quick Diff Tool` \
-# nethogs `#Whats using all your traffic? Now you know!` \
 nload `#Network Load Monitor` \
 # ncdu `#Directory listing CLI tool. For a gui version take a look at "baobab"` \
 # fortune-mod `#Inspiring Quotes` \
-
+# meld `#Quick Diff Tool` \
+# nethogs `#Whats using all your traffic? Now you know!` \
 
 ###
-# System utils 
+# Install system utils 
 ###
 
+sudo dnf install \
+-y \
 exfat-utils `#Allows managing exfat (android sd cards and co)` \
 ffmpeg `#Adds Codec Support to Firefox, and in general` \
 fuse-exfat `#Allows mounting exfat` \
@@ -102,41 +97,41 @@ gvfs-smb `#gnome<>samba` \
 # python3-devel `#Python Development Gear` \
 
 ###
-# Themes 
+# Install themes 
 ###
 
+sudo dnf install \
+-y \
 arc-theme `#A more comfortable GTK/Gnome-Shell Theme` \
 breeze-cursor-theme `#A more comfortable Cursor Theme from KDE` \
-papirus-icon-theme `#A quite nice icon theme` \
+papirus-icon-theme `#A quite nice icon theme` 
 
 ###
-# Fonts 
+# Install fonts 
 ###
 
+sudo dnf install \
+-y \
 'mozilla-fira-*' `#A nice font family` \
-adobe-source-code-pro-fonts `#The most beautiful monospace font around` \
+adobe-source-code-pro-fonts `#The most beautiful monospace font around`
 
 ###
-# Plugins 
+# Install plugins 
 ###
 
-# NetworkManager
+sudo dnf install \
+-y \
+`# NetworkManager`\
 NetworkManager-openvpn-gnome `#To enforce that its possible to import .ovpn files in the settings` \
-
-# Evolution
+`# Evolution` \
 evolution-spamassassin `#Helps you deal with spam in Evolution` \
-
-# Nautilus
+`# Nautilus` \
 nautilus-extensions `#What it says on the tin` \
 nautilus-image-converter \
 nautilus-search-tool \
 file-roller-nautilus `#More Archives supported in nautilus` \
 gtkhash-nautilus `#To get a file hash via gui` \
-
-# LibreOffice
-# libreoffice-gallery-vrt-network-equipment `#Network Icon Preset for LibreOffice` \
-
-# GIMP
+`# GIMP` \
 gimp-data-extras \
 gimp-dbp \
 gimp-dds-plugin \
@@ -156,30 +151,37 @@ gimp-save-for-web \
 gimp-wavelet-decompose \
 gimp-wavelet-denoise-plugin \
 gmic-gimp \
-GREYCstoration-gimp \
+GREYCstoration-gimp 
+`# LibreOffice` \
+# libreoffice-gallery-vrt-network-equipment `#Network Icon Preset for LibreOffice` \
 
 ###
 # GNOME Extentions 
 ###
-
+sudo dnf install \
+-y \
 gnome-shell-extension-dash-to-dock `#dash for gnome` \
 gnome-shell-extension-topicons-plus `#Notification Icons for gnome` \
-gnome-shell-extension-user-theme `#Enables theming the gnome shell` \
+gnome-shell-extension-user-theme `#Enables theming the gnome shell`
 
 ###
 # Virtualization 
 ###
 
+sudo dnf install \
+-y \
 vagrant `#Virtual Machine management and autodeployment` \
 vagrant-libvirt `#integration with libvirt` \
 virt-manager `#A gui to manage virtual machines` \
 # ansible `#Awesome to manage multiple machines or define states for systems` \
-libguestfs-tools `#Resize Vm Images and convert them` \
+libguestfs-tools `#Resize Vm Images and convert them` 
 
 ###
 # Useful applications 
 ###
 
+sudo dnf install \
+-y \
 calibre `#Ebook management` \
 filezilla `#S/FTP Access` \
 gimp `#The Image Editing Powerhouse - and its plugins` \
@@ -188,8 +190,8 @@ gnome-tweak-tool `#Your central place to make gnome like you want` \
 inkscape  `#Working with .svg files` \
 # mumble `#Talk with your friends` \
 spamassassin `#Dep to make sure it is locally installed for Evolution` \
-transmission-gtk `#Torrent Client` \
-# hexchat `#Irc Client` \
+transmission-gtk `#Torrent Client` 
+# hexchat `#Irc Client` 
 
 
 ###
@@ -200,7 +202,6 @@ sudo dnf remove \
 -y \
 gnome-shell-extension-background-logo `#Tasteful but nah` \
 totem `#With mpv installed totem became a little useless` \
-chromium `#Using Chromium resets chromium-vaapi so remove it if installed, userprofiles will be kept and can be used in -vaapi` \
 flowblade `#Sadly has really outdated mlt dependencies`
 
 
@@ -289,6 +290,10 @@ gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 gsettings set org.gnome.nautilus.list-view use-tree-view true
 
 
+# Configure git
+git config --global user.name "Evgeniy Matveev"
+git config --global user.email "mfb.eugene@gmail.com"
+git config --global core.autocrlf input
 
 # Steam games (32bit) have issues with the too new 32bit compat libs in fedora
 # Flatpak is the better option here
