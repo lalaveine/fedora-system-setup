@@ -217,7 +217,7 @@ flatpak install \
 flathub \
 org.libreoffice.LibreOffice `#Open-source office suite` \
 org.telegram.desktop `#Pavel Durov's messenger` \
-org.videolan.VLC
+tv.kodi.Kodi
 
 
 ###
@@ -253,6 +253,8 @@ sudo tuned-adm profile balanced
 # Virtual Machines
 sudo systemctl enable --now libvirtd
 
+# Set default firewall zone to drop
+sudo firewall-cmd --set-default-zone=drop
 
 ###
 # Theming and GNOME Options
