@@ -64,6 +64,7 @@ sudo dnf distro-sync -y
 
 sudo dnf install \
 -y \
+-C `#Stop dnf from updating metadata` \
 vim `#The best text editor` \
 htop `#A more visual top` \
 tmux `#Terminal multiplexer` \
@@ -88,6 +89,7 @@ nload `#Network Load Monitor` \
 
 sudo dnf install \
 -y \
+-C `#Stop dnf from updating metadata` \
 exfat-utils `#Allows managing exfat (android sd cards and co)` \
 ffmpeg `#Adds Codec Support to Firefox, and in general` \
 fuse-exfat `#Allows mounting exfat` \
@@ -101,7 +103,8 @@ xorg-x11-drv-amdgpu `#AMDGPU driver for X11` \
 
 # Install OpenH264 from Cisco
 sudo dnf config-manager --set-enabled fedora-cisco-openh264
-sudo dnf install -y \
+sudo dnf install \
+-y \
 gstreamer1-plugin-openh264 \
 mozilla-openh264
 
@@ -111,6 +114,7 @@ mozilla-openh264
 
 sudo dnf install \
 -y \
+-C `#Stop dnf from updating metadata` \
 arc-theme `#A more comfortable GTK/Gnome-Shell Theme` \
 breeze-cursor-theme `#A more comfortable Cursor Theme from KDE` \
 papirus-icon-theme `#A quite nice icon theme` 
@@ -122,6 +126,7 @@ papirus-icon-theme `#A quite nice icon theme`
 
 sudo dnf install \
 -y \
+-C `#Stop dnf from updating metadata` \
 'mozilla-fira-*' `#A nice font family` \
 adobe-source-code-pro-fonts `#The most beautiful monospace font around`
 
@@ -131,6 +136,7 @@ adobe-source-code-pro-fonts `#The most beautiful monospace font around`
 
 sudo dnf install \
 -y \
+-C `#Stop dnf from updating metadata` \
 `# NetworkManager`\
 NetworkManager-openvpn-gnome `#To enforce that its possible to import .ovpn files in the settings` \
 `# Evolution` \
@@ -148,6 +154,7 @@ gtkhash-nautilus `#To get a file hash via gui` \
 ###
 sudo dnf install \
 -y \
+-C `#Stop dnf from updating metadata` \
 gnome-shell-extension-dash-to-dock `#dash for gnome` \
 gnome-shell-extension-topicons-plus `#Notification Icons for gnome` \
 gnome-shell-extension-user-theme `#Enables theming the gnome shell`
@@ -159,6 +166,7 @@ gnome-shell-extension-user-theme `#Enables theming the gnome shell`
 
 sudo dnf install \
 -y \
+-C `#Stop dnf from updating metadata` \
 vagrant `#Virtual Machine management and autodeployment` \
 vagrant-libvirt `#integration with libvirt` \
 virt-manager `#A gui to manage virtual machines` \
@@ -168,17 +176,18 @@ libguestfs-tools `#Resize Vm Images and convert them` \
 # Docker
 # Add repo
 sudo dnf config-manager \
-    --add-repo \
-    https://download.docker.com/linux/fedora/docker-ce.repo
+--add-repo \
+https://download.docker.com/linux/fedora/docker-ce.repo
 # Install docker
 sudo dnf -y install docker-ce
 
 ###
 # Useful applications 
 ###
-
+ 
 sudo dnf install \
 -y \
+-C `#Stop dnf from updating metadata` \
 calibre `#Ebook management` \
 gimp `#The Image Editing Powerhouse - and its plugins` \
 git `#VCS done right` \
@@ -186,6 +195,11 @@ gnome-tweak-tool `#Your central place to make gnome like you want` \
 spamassassin `#Dep to make sure it is locally installed for Evolution` \
 transmission `#Torrent client` \
 dconf-editor `#GUI GSettings editor` 
+
+# Install Bitwarden
+wget https://github.com/bitwarden/desktop/releases/download/v1.15.2/Bitwarden-1.15.2-x86_64.rpm -P /tmp
+sudo dnf install -y /tmp/Bitwarden-1.15.2-x86_64.rpm
+rm /tmp/Bitwarden-1.15.2-x86_64.rpm
 
 
 ###
@@ -198,7 +212,10 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 # Install flatpaks
 flatpak install \
 -y \
-flathub org.libreoffice.LibreOffice `#Open-source office suite` \
+flathub \
+org.libreoffice.LibreOffice `#Open-source office suite` \
+org.telegram.desktop `#Pavel Durov's messenger` \
+org.videolan.VLC
 
 
 ###
@@ -213,7 +230,7 @@ if !(grep -q "set -o vi" "$HOME/.bashrc"); then
 fi
 
 # Configure sensors (defaults)
-sensors-detect --auto
+sudo sensors-detect --auto
 
 # Configure powermode
 sudo systemctl enable --now tuned
@@ -291,6 +308,8 @@ gsettings set org.gnome.nautilus.preferences executable-text-activation 'ask'
 gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 gsettings set org.gnome.nautilus.list-view use-tree-view true
 
+#Touchpad tap to click
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 
 # Configure git
 git config --global user.name "Evgeniy Matveev"
