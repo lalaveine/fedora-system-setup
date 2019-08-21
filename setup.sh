@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Interrupt handler
+trap '{ echo "Hey, you pressed Ctrl-C.  Time to quit." ; exit 1; }' INT
+
 if [ $(id -u) = 0 ]; then
    echo "This script changes your users gsettings and should thus not be run as root!"
    echo "You may need to enter your password multiple times!"
