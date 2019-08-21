@@ -14,10 +14,11 @@ do
 			echo "Nonfree Additions will be added"
 			NONFREE=true
             ;;
-        --steam) 
-			echo "Adding Steam as flatpak to avoid fedora lib misaligment issues for games"
-			STEAMFLAT=true
+	--no-flatpack) 
+			echo "Flatpacks will not be installed"
+			FLATPACK=false
             ;;
+
     esac
     shift
 done
@@ -64,7 +65,6 @@ sudo dnf distro-sync -y
 
 sudo dnf install \
 -y \
--C `#Stop dnf from updating metadata` \
 vim `#The best text editor` \
 htop `#A more visual top` \
 tmux `#Terminal multiplexer` \
@@ -89,7 +89,6 @@ nload `#Network Load Monitor` \
 
 sudo dnf install \
 -y \
--C `#Stop dnf from updating metadata` \
 exfat-utils `#Allows managing exfat (android sd cards and co)` \
 ffmpeg `#Adds Codec Support to Firefox, and in general` \
 fuse-exfat `#Allows mounting exfat` \
@@ -118,7 +117,6 @@ libva-utils
 
 sudo dnf install \
 -y \
--C `#Stop dnf from updating metadata` \
 arc-theme `#A more comfortable GTK/Gnome-Shell Theme` \
 breeze-cursor-theme `#A more comfortable Cursor Theme from KDE` \
 papirus-icon-theme `#A quite nice icon theme` 
@@ -130,7 +128,6 @@ papirus-icon-theme `#A quite nice icon theme`
 
 sudo dnf install \
 -y \
--C `#Stop dnf from updating metadata` \
 'mozilla-fira-*' `#A nice font family` \
 adobe-source-code-pro-fonts `#The most beautiful monospace font around`
 
@@ -140,7 +137,6 @@ adobe-source-code-pro-fonts `#The most beautiful monospace font around`
 
 sudo dnf install \
 -y \
--C `#Stop dnf from updating metadata` \
 `# NetworkManager`\
 NetworkManager-openvpn-gnome `#To enforce that its possible to import .ovpn files in the settings` \
 `# Evolution` \
@@ -158,7 +154,6 @@ gtkhash-nautilus `#To get a file hash via gui` \
 ###
 sudo dnf install \
 -y \
--C `#Stop dnf from updating metadata` \
 gnome-shell-extension-dash-to-dock `#dash for gnome` \
 gnome-shell-extension-topicons-plus `#Notification Icons for gnome` \
 gnome-shell-extension-user-theme `#Enables theming the gnome shell`
@@ -170,11 +165,9 @@ gnome-shell-extension-user-theme `#Enables theming the gnome shell`
 
 sudo dnf install \
 -y \
--C `#Stop dnf from updating metadata` \
 virt-manager `#A gui to manage virtual machines` \
 libvirt \
 libguestfs-tools `#Resize Vm Images and convert them` \
-# ansible `#Awesome to manage multiple machines or define states for systems` \
 
 # Docker
 # Add repo
@@ -190,7 +183,6 @@ sudo dnf -y install docker-ce
  
 sudo dnf install \
 -y \
--C `#Stop dnf from updating metadata` \
 calibre `#Ebook management` \
 git `#VCS done right` \
 gnome-tweak-tool `#Your central place to make gnome like you want` \
@@ -199,7 +191,7 @@ transmission `#Torrent client` \
 dconf-editor `#GUI GSettings editor` \
 cherrytree `#Note taking app`
 
-# Install Bitwarden
+# Install Bitwarden (wget will try infinitely)
 wget -c --tries=0 --read-timeout=20 https://github.com/bitwarden/desktop/releases/download/v1.15.2/Bitwarden-1.15.2-x86_64.rpm -P /tmp
 sudo dnf install -y /tmp/Bitwarden-1.15.2-x86_64.rpm
 rm /tmp/Bitwarden-1.15.2-x86_64.rpm
@@ -213,13 +205,14 @@ rm /tmp/Bitwarden-1.15.2-x86_64.rpm
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Install flatpaks
-flatpak install \
--y \
-flathub \
-org.libreoffice.LibreOffice `#Open-source office suite` \
-org.telegram.desktop `#Pavel Durov's messenger` \
-org.videolan.VLC \
-tv.kodi.Kodi
+if [ -z "$FLATPAK" ]; then
+	flatpak install -y flathub \
+	org.libreoffice.LibreOffice `#Open-source office suite` \
+	org.telegram.desktop `#Pavel Durov's messenger` \
+	org.videolan.VLC \
+	tv.kodi.Kodi
+fi
+
 
 
 ###
@@ -329,16 +322,6 @@ gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 git config --global user.name "Evgeniy Matveev"
 git config --global user.email "mfb.eugene@gmail.com"
 git config --global core.autocrlf input
-
-# Steam games (32bit) have issues with the too new 32bit compat libs in fedora
-# Flatpak is the better option here
-if [ ! -z "$STEAMFLAT" ]; then
-	sudo dnf install -y flatpak
-	sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	flatpak -y install flathub com.valvesoftware.Steam
-	# Installed but not displayed? Check with: flatpak run com.valvesoftware.Steam
-fi
-
 
 #The user needs to reboot to apply all changes.
 echo "Please Reboot" && exit 0
