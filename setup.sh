@@ -164,8 +164,8 @@ sudo dnf install \
 -y \
 gnome-shell-extension-dash-to-dock `#dash for gnome` \
 gnome-shell-extension-topicons-plus `#Notification Icons for gnome` \
-gnome-shell-extension-user-theme `#Enables theming the gnome shell`
-
+gnome-shell-extension-user-theme `#Enables theming the gnome shell` \
+gnome-shell-extension-drive-menu `#Enables nice menu with incerted drives`
 
 ###
 # Virtualization 
@@ -213,7 +213,7 @@ rm /tmp/Bitwarden-1.15.2-x86_64.rpm
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Install flatpaks
-if [ -z "$FLATPAK" ]; then
+if [ -z "$FLATPACK" ]; then
 	flatpak install -y flathub \
 	org.libreoffice.LibreOffice `#Open-source office suite` \
 	org.telegram.desktop `#Pavel Durov's messenger` \
@@ -241,6 +241,15 @@ fedora-chromium-config `#I guess there is some obscure dependency that pulled th
 if !(grep -q "set -o vi" "$HOME/.bashrc"); then
 	echo "set -o vi" >> $HOME/.bashrc
 fi
+
+# Force X11 to use AMDGPU driver
+sudo cat > /etc/X11/xorg.conf.d/20-amdgpu.conf << EOL
+Section "Device"
+        Identifier "card0"
+        Driver "amdgpu"
+        Option "TearFree" "true"
+EndSection
+EOL
 
 # Configure sensors (defaults)
 sudo sensors-detect --auto
@@ -281,7 +290,7 @@ gsettings set org.gnome.shell.extensions.user-theme name 'Arc-Dark-solid'
 gsettings set org.gnome.desktop.interface monospace-font-name 'Source Code Pro Semi-Bold 12'
 
 #Set Extensions for gnome
-gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'TopIcons@phocean.net', 'dash-to-dock@micxgx.gmail.com']"
+gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'TopIcons@phocean.net', 'dash-to-dock@micxgx.gmail.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com']"
 
 #Better Font Smoothing
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
