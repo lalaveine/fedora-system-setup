@@ -34,3 +34,7 @@ You can check if it's working in [here](https://www.cloudflare.com/ssl/encrypted
 To stop soft lockups of cpu I added `ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2` before `quiet` to `/etc/default/grub`
 
 To update grub I use this command `sudo grub2-mkconfig -o "$(readlink -e /etc/grub2-efi.conf)"`
+
+#### You can symlink home folder files to other location
+
+Command looks like this `ln -s /data/Desktop $HOME/Desktop`
