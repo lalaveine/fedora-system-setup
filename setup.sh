@@ -223,6 +223,14 @@ tv.kodi.Kodi
 
 
 ###
+# Remove useless stuff
+###
+
+sudo dnf -y remove \
+fedora-chromium-config `#I guess there is some obscure dependency that pulled this from repos"`
+
+
+###
 # Enable some of the goodies, but not all
 # Its the users responsibility to choose and enable zsh, with oh-my-zsh for example
 # or set a more specific tuned profile
