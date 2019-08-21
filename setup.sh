@@ -109,6 +109,8 @@ gstreamer1-plugin-openh264 \
 mozilla-openh264 \
 libva-vdpau-driver \
 libvdpau-va-gl
+gstreamer1-vaapi
+libva-utils
 
 ###
 # Install themes 
