@@ -11,14 +11,19 @@ while test $# -gt 0
 do
     case "$1" in
         --nonfree) 
-			echo "Nonfree Additions will be added"
-			NONFREE=true
+		echo "Nonfree Additions will be added"
+		NONFREE=true
             ;;
 	--no-flatpack) 
-			echo "Flatpacks will not be installed"
-			FLATPACK=false
+		echo "Flatpacks will not be installed"
+		FLATPACK=false
             ;;
-
+	--help) 
+		echo -e "Options:  
+	--nonfree - Install non-free version of RMPFusion repo
+	--no-flatpack - Flatpacks installation will be skiped"
+		exit 0
+            ;;
     esac
     shift
 done
