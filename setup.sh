@@ -167,6 +167,16 @@ gnome-shell-extension-topicons-plus `#Notification Icons for gnome` \
 gnome-shell-extension-user-theme `#Enables theming the gnome shell` \
 gnome-shell-extension-drive-menu `#Enables nice menu with incerted drives`
 
+# Download script to install extension from extensions.gnome.org
+wget -c --tries=0 --read-timeout=20 https://raw.githubusercontent.com/brunelli/gnome-shell-extension-installer/master/gnome-shell-extension-installer -P /tmp
+chmod 744 /tmp/gnome-shell-extension-installer
+
+# LockKeys extension - Num/Caps indicators on the top bar
+/tmp/gnome-shell-extension-installer 36
+
+# Remove script
+rm /tmp/gnome-shell-extension-installer
+ 
 ###
 # Virtualization 
 ###
@@ -243,13 +253,13 @@ if !(grep -q "set -o vi" "$HOME/.bashrc"); then
 fi
 
 # Force X11 to use AMDGPU driver
-sudo cat > /etc/X11/xorg.conf.d/20-amdgpu.conf << EOL
+sudo bash -c 'cat > /etc/X11/xorg.conf.d/20-amdgpu.conf << EOL
 Section "Device"
         Identifier "card0"
         Driver "amdgpu"
         Option "TearFree" "true"
 EndSection
-EOL
+EOL'
 
 # Configure sensors (defaults)
 sudo sensors-detect --auto
