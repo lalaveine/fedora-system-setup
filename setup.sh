@@ -196,7 +196,8 @@ git `#VCS done right` \
 gnome-tweak-tool `#Your central place to make gnome like you want` \
 spamassassin `#Dep to make sure it is locally installed for Evolution` \
 transmission `#Torrent client` \
-dconf-editor `#GUI GSettings editor` 
+dconf-editor `#GUI GSettings editor` \
+cherrytree `#Note taking app`
 
 # Install Bitwarden
 wget https://github.com/bitwarden/desktop/releases/download/v1.15.2/Bitwarden-1.15.2-x86_64.rpm -P /tmp
