@@ -171,9 +171,8 @@ gnome-shell-extension-user-theme `#Enables theming the gnome shell`
 sudo dnf install \
 -y \
 -C `#Stop dnf from updating metadata` \
-vagrant `#Virtual Machine management and autodeployment` \
-vagrant-libvirt `#integration with libvirt` \
 virt-manager `#A gui to manage virtual machines` \
+libvirt \
 libguestfs-tools `#Resize Vm Images and convert them` \
 # ansible `#Awesome to manage multiple machines or define states for systems` \
 
@@ -193,7 +192,6 @@ sudo dnf install \
 -y \
 -C `#Stop dnf from updating metadata` \
 calibre `#Ebook management` \
-gimp `#The Image Editing Powerhouse - and its plugins` \
 git `#VCS done right` \
 gnome-tweak-tool `#Your central place to make gnome like you want` \
 spamassassin `#Dep to make sure it is locally installed for Evolution` \
@@ -202,7 +200,7 @@ dconf-editor `#GUI GSettings editor` \
 cherrytree `#Note taking app`
 
 # Install Bitwarden
-wget https://github.com/bitwarden/desktop/releases/download/v1.15.2/Bitwarden-1.15.2-x86_64.rpm -P /tmp
+wget -c --tries=0 --read-timeout=20 https://github.com/bitwarden/desktop/releases/download/v1.15.2/Bitwarden-1.15.2-x86_64.rpm -P /tmp
 sudo dnf install -y /tmp/Bitwarden-1.15.2-x86_64.rpm
 rm /tmp/Bitwarden-1.15.2-x86_64.rpm
 
