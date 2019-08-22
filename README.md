@@ -40,3 +40,7 @@ To update grub I use this command `sudo grub2-mkconfig -o "$(readlink -e /etc/gr
 #### You can symlink home folder files to other location
 
 Command looks like this `ln -s /data/Desktop $HOME/Desktop`
+
+#### To get touchpad working on fedora 30
+
+Add to `/etc/default/grub` this `i8042.reset i8042.nomux i8042.nopnp i8042.noloop`
