@@ -80,15 +80,15 @@ lm_sensors `#Show your systems Temparature` \
 pv `#pipe viewer - see what happens between the | with output | pv | receiver ` \
 tuned `#Tuned can optimize your performance according to metrics. tuned-adm profile powersave can help you on laptops, alot` \
 unar `#free rar decompression` \
-wavemon `#a cli wifi status tool` \
-youtube-dl `#Allows you to download and save youtube videos but also to open their links by dragging them into mpv!` \
-borgbackup `#If you need backups, this is your tool for it` \
 iotop  `#disk usage cli monitor` \
 nload `#Network Load Monitor` \
 # ncdu `#Directory listing CLI tool. For a gui version take a look at "baobab"` \
 # fortune-mod `#Inspiring Quotes` \
 # meld `#Quick Diff Tool` \
+# borgbackup `#If you need backups, this is your tool for it` \
 # nethogs `#Whats using all your traffic? Now you know!` \
+# wavemon `#a cli wifi status tool` \
+# youtube-dl `#Allows you to download and save youtube videos but also to open their links by dragging them into mpv!` \
 
 
 ###
@@ -126,9 +126,8 @@ libva-utils
 sudo dnf install \
 -y \
 arc-theme `#A more comfortable GTK/Gnome-Shell Theme` \
-breeze-cursor-theme `#A more comfortable Cursor Theme from KDE` \
 papirus-icon-theme `#A quite nice icon theme` 
-
+# breeze-cursor-theme `#A more comfortable Cursor Theme from KDE` \
 
 ###
 # Install fonts 
@@ -147,8 +146,6 @@ sudo dnf install \
 -y \
 `# NetworkManager`\
 NetworkManager-openvpn-gnome `#To enforce that its possible to import .ovpn files in the settings` \
-`# Evolution` \
-evolution-spamassassin `#Helps you deal with spam in Evolution` \
 `# Nautilus` \
 nautilus-extensions `#What it says on the tin` \
 nautilus-image-converter \
@@ -163,9 +160,9 @@ gtkhash-nautilus `#To get a file hash via gui` \
 sudo dnf install \
 -y \
 gnome-shell-extension-dash-to-dock `#dash for gnome` \
-gnome-shell-extension-topicons-plus `#Notification Icons for gnome` \
 gnome-shell-extension-user-theme `#Enables theming the gnome shell` \
 gnome-shell-extension-drive-menu `#Enables nice menu with incerted drives`
+# gnome-shell-extension-topicons-plus `#Notification Icons for gnome` \
 
 # Download script to install extension from extensions.gnome.org
 wget -c --tries=0 --read-timeout=20 https://raw.githubusercontent.com/brunelli/gnome-shell-extension-installer/master/gnome-shell-extension-installer -P /tmp
@@ -204,10 +201,10 @@ sudo dnf install \
 calibre `#Ebook management` \
 git `#VCS done right` \
 gnome-tweak-tool `#Your central place to make gnome like you want` \
-spamassassin `#Dep to make sure it is locally installed for Evolution` \
 transmission `#Torrent client` \
 dconf-editor `#GUI GSettings editor` \
 cherrytree `#Note taking app`
+# spamassassin `#Dep to make sure it is locally installed for Evolution` \
 
 # Install Bitwarden (wget will try infinitely)
 wget -c --tries=0 --read-timeout=20 https://github.com/bitwarden/desktop/releases/download/v1.15.2/Bitwarden-1.15.2-x86_64.rpm -P /tmp
@@ -225,7 +222,6 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 # Install flatpaks
 if [ -z "$FLATPACK" ]; then
 	flatpak install -y flathub \
-	org.libreoffice.LibreOffice `#Open-source office suite` \
 	org.telegram.desktop `#Pavel Durov's messenger` \
 	org.videolan.VLC \
 	tv.kodi.Kodi
