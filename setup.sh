@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Interrupt handler
-trap '{ echo "Hey, you pressed Ctrl-C.  Time to quit." ; exit 1; }' INT
+trap '{ echo "Hey, you pressed Ctrl-C.  Time to quit." ; kill "$infiloop"; exit 1; }' INT
 
 if [ $(id -u) = 0 ]; then
    echo "This script changes your users gsettings and should thus not be run as root!"
@@ -31,6 +31,11 @@ do
     shift
 done
 
+###
+# Background sudo task
+###
+while :; do sudo -v; sleep 59; done &
+infiloop=$!
 
 ###
 # Symlink home folder to hard drive
@@ -377,6 +382,9 @@ gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 git config --global user.name "Evgeniy Matveev"
 git config --global user.email "mfb.eugene@gmail.com"
 git config --global core.autocrlf input
+
+# Kill infinite sudo loop
+kill "$infiloop"
 
 #The user needs to reboot to apply all changes.
 echo "Please Reboot" && exit 0
