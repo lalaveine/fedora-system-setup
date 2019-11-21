@@ -32,12 +32,6 @@ do
 done
 
 ###
-# Background sudo task
-###
-while :; do sudo -v; sleep 59; done &
-infiloop=$!
-
-###
 # Symlink home folder to hard drive
 ###
 
@@ -45,6 +39,10 @@ home_folders=("Desktop" "Documents" "Downloads" "Music" "Pictures" "Public" "Tem
 
 # Change owner of /data
 sudo chown $USER:$USER /data
+
+# Make infinite loop for sudo, so I don't have to enter password again
+while :; do sudo -v; sleep 1; done &
+infiloop=$!
 
 # Remove folders from the home folder
 for folder_name in ${home_folders[@]}; do
