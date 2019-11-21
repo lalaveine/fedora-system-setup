@@ -31,6 +31,39 @@ do
     shift
 done
 
+###
+# System configuration
+###
+
+# Firefox
+bash -c 'cat > $HOME/.mozilla/firefox/$(ls $HOME/.mozilla/firefox/ | grep default-release)/user.js << EOL
+user_pref("network.trr.mode", 2);
+user_pref("network.security.esni.enabled", true);
+user_pref("browser.startup.homepage", "about:home");
+EOL'
+
+# Force X11 to use AMDGPU driver
+sudo bash -c 'cat > /etc/X11/xorg.conf.d/20-amdgpu.conf << EOL
+Section "Device"
+        Identifier "card0"
+        Driver "amdgpu"
+        Option "TearFree" "true"
+EndSection
+EOL'
+
+# Disable wifi powersafe
+sudo bash -c 'cat > /etc/NetworkManager/conf.d/wifi-powersave-off.conf << EOL
+[connection]
+wifi.powersave = 0
+EOL'
+
+# Restart network services
+sudo systemctl restart NetworkManager
+
+# Enable touchpad
+sudo sed -i 's/\<quiet\>/& i8042.reset i8042.nomux i8042.nopnp i8042.noloop/' /etc/default/grub
+sudo grub2-mkconfig -o "$(readlink -e /etc/grub2-efi.conf)"
+
 
 ###
 # Optionally clean all dnf temporary files
@@ -62,10 +95,6 @@ fi
 ###
 
 sudo dnf upgrade --allowerasing --refresh -y
-# And also remove any packages without a source backing them
-# If you come from the Fedora 31 Future i'll check if this is still optimal before F31 comes out.
-sudo dnf distro-sync -y
-
 
 ###
 # Install CLI tools 
@@ -79,9 +108,9 @@ tmux `#Terminal multiplexer` \
 lm_sensors `#Show your systems Temparature` \
 pv `#pipe viewer - see what happens between the | with output | pv | receiver ` \
 tuned `#Tuned can optimize your performance according to metrics. tuned-adm profile powersave can help you on laptops, alot` \
-unar `#free rar decompression` \
-iotop  `#disk usage cli monitor` \
-nload `#Network Load Monitor` \
+unar `#free rar decompression` 
+# iotop  `#disk usage cli monitor` \
+# nload `#Network Load Monitor` \
 # ncdu `#Directory listing CLI tool. For a gui version take a look at "baobab"` \
 # fortune-mod `#Inspiring Quotes` \
 # meld `#Quick Diff Tool` \
@@ -106,7 +135,7 @@ gvfs-mtp `#gnome<>android` \
 gvfs-nfs `#gnome<>ntfs` \
 gvfs-smb `#gnome<>samba` \
 dnf-plugins-core `#Provides the commands to manage your DNF repositories from the command line.` \
-xorg-x11-drv-amdgpu `#AMDGPU driver for X11` \
+xorg-x11-drv-amdgpu `#AMDGPU driver for X11` 
 
 # Install OpenH264 from Cisco
 sudo dnf config-manager --set-enabled fedora-cisco-openh264
@@ -127,7 +156,6 @@ sudo dnf install \
 -y \
 arc-theme `#A more comfortable GTK/Gnome-Shell Theme` \
 papirus-icon-theme `#A quite nice icon theme` 
-# breeze-cursor-theme `#A more comfortable Cursor Theme from KDE` \
 
 ###
 # Install fonts 
@@ -151,7 +179,7 @@ nautilus-extensions `#What it says on the tin` \
 nautilus-image-converter \
 nautilus-search-tool \
 file-roller-nautilus `#More Archives supported in nautilus` \
-gtkhash-nautilus `#To get a file hash via gui` \
+gtkhash-nautilus `#To get a file hash via gui` 
 
 
 ###
@@ -162,7 +190,6 @@ sudo dnf install \
 gnome-shell-extension-dash-to-dock `#dash for gnome` \
 gnome-shell-extension-user-theme `#Enables theming the gnome shell` \
 gnome-shell-extension-drive-menu `#Enables nice menu with incerted drives`
-# gnome-shell-extension-topicons-plus `#Notification Icons for gnome` \
 
 # Download script to install extension from extensions.gnome.org
 wget -c --tries=0 --read-timeout=20 https://raw.githubusercontent.com/brunelli/gnome-shell-extension-installer/master/gnome-shell-extension-installer -P /tmp
@@ -170,6 +197,7 @@ chmod 744 /tmp/gnome-shell-extension-installer
 
 # LockKeys extension - Num/Caps indicators on the top bar
 /tmp/gnome-shell-extension-installer 36
+/tmp/gnome-shell-extension-installer 906
 
 # Remove script
 rm /tmp/gnome-shell-extension-installer
@@ -182,7 +210,7 @@ sudo dnf install \
 -y \
 virt-manager `#A gui to manage virtual machines` \
 libvirt \
-libguestfs-tools `#Resize Vm Images and convert them` \
+libguestfs-tools `#Resize Vm Images and convert them` 
 
 # Docker
 # Add repo
@@ -228,15 +256,6 @@ if [ -z "$FLATPACK" ]; then
 fi
 
 
-
-###
-# Remove useless stuff
-###
-
-sudo dnf -y remove \
-fedora-chromium-config `#I guess there is some obscure dependency that pulled this from repos"`
-
-
 ###
 # Enable some of the goodies, but not all
 # Its the users responsibility to choose and enable zsh, with oh-my-zsh for example
@@ -247,15 +266,6 @@ fedora-chromium-config `#I guess there is some obscure dependency that pulled th
 if !(grep -q "set -o vi" "$HOME/.bashrc"); then
 	echo "set -o vi" >> $HOME/.bashrc
 fi
-
-# Force X11 to use AMDGPU driver
-sudo bash -c 'cat > /etc/X11/xorg.conf.d/20-amdgpu.conf << EOL
-Section "Device"
-        Identifier "card0"
-        Driver "amdgpu"
-        Option "TearFree" "true"
-EndSection
-EOL'
 
 # Configure sensors (defaults)
 sudo sensors-detect --auto
@@ -296,7 +306,7 @@ gsettings set org.gnome.shell.extensions.user-theme name 'Arc-Dark-solid'
 gsettings set org.gnome.desktop.interface monospace-font-name 'Source Code Pro Semi-Bold 12'
 
 #Set Extensions for gnome
-gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'TopIcons@phocean.net', 'dash-to-dock@micxgx.gmail.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'lockkeys@vaina.lt']"
+gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'TopIcons@phocean.net', 'dash-to-dock@micxgx.gmail.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'lockkeys@vaina.lt','sound-output-device-chooser@kgshank.net']"
 
 #Better Font Smoothing
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
