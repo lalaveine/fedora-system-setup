@@ -234,11 +234,6 @@ dconf-editor `#GUI GSettings editor` \
 cherrytree `#Note taking app`
 # spamassassin `#Dep to make sure it is locally installed for Evolution` \
 
-# Install Bitwarden (wget will try infinitely)
-wget -c --tries=0 --read-timeout=20 https://github.com/bitwarden/desktop/releases/download/v1.15.2/Bitwarden-1.15.2-x86_64.rpm -P /tmp
-sudo dnf install -y /tmp/Bitwarden-1.15.2-x86_64.rpm
-rm /tmp/Bitwarden-1.15.2-x86_64.rpm
-
 
 ###
 # Flatpak
