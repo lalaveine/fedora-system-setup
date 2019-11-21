@@ -44,3 +44,11 @@ Command looks like this `ln -s /data/Desktop $HOME/Desktop`
 #### To get touchpad working on fedora 30
 
 Add to `/etc/default/grub` this `i8042.reset i8042.nomux i8042.nopnp i8042.noloop`
+
+#### Wifi sometimes stops working, this should fix it
+Create file `/etc/NetworkManager/conf.d/wifi-powersave-off.conf` and put those line into it:
+
+```
+[connection]
+wifi.powersave = 0
+```
