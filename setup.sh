@@ -45,7 +45,7 @@ done
 
 # Create folders in the data folder
 for folder_name in ${home_folders[@]}; do
-        rmdir /data/$folder_name
+        mkdir /data/$folder_name
 done
 
 # Create system links from new location to the home folder
