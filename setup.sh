@@ -38,6 +38,9 @@ done
 
 home_folders=("Desktop" "Documents" "Downloads" "Music" "Pictures" "Public" "Templates" "Videos")
 
+# Change owner of /data
+sudo chown $USER:$USER /data
+
 # Remove folders from the home folder
 for folder_name in ${home_folders[@]}; do
         rmdir $HOME/$folder_name
