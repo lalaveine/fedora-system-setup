@@ -264,6 +264,17 @@ dconf-editor `#GUI GSettings editor` \
 cherrytree `#Note taking app`
 # spamassassin `#Dep to make sure it is locally installed for Evolution` \
 
+###
+# Snap
+###
+sudo dnf install snapd
+sudo systemctl enable snapd
+sudo systemctl start snapd
+
+sudo ln -s /var/lib/snapd/snap /snap
+
+sudo snap install snap-store
+
 
 ###
 # Flatpak
