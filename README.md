@@ -31,9 +31,11 @@ You can check if it's working in [here](https://www.cloudflare.com/ssl/encrypted
 
 #### There seems to be a firmware bug in Acer Nitro 5 AN515-42
 
-~~ To stop soft lockups of cpu I added `ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2` before `quiet` to `/etc/default/grub`~~
+After reading [this](https://ubuntuforums.org/showthread.php?t=2254677), I added `ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.1` to the `/etc/default/grub`
 
-EDIT: This made core 6 to drown in hardware interrupts, so I figured it's better to disable apic altogether and added `noapic` to `/etc/default/grub`
+~~EDIT: This made core 6 to drown in hardware interrupts, so I figured it's better to disable apic altogether and added `noapic` to `/etc/default/grub`~~
+
+Everything works fine
 
 To update grub I use this command `sudo grub2-mkconfig -o "$(readlink -e /etc/grub2-efi.conf)"`
 
