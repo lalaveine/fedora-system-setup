@@ -261,8 +261,7 @@ calibre `#Ebook management` \
 git `#VCS done right` \
 gnome-tweak-tool `#Your central place to make gnome like you want` \
 transmission `#Torrent client` \
-dconf-editor `#GUI GSettings editor` \
-cherrytree `#Note taking app`
+dconf-editor `#GUI GSettings editor` 
 # spamassassin `#Dep to make sure it is locally installed for Evolution` \
 
 ###
