@@ -52,5 +52,6 @@ Create file `/etc/NetworkManager/conf.d/wifi-powersave-off.conf` and put those l
 
 ```
 [connection]
-wifi.powersave = 0
+# Values are 0 (use default), 1 (ignore/don't touch), 2 (disable) or 3 (enable).
+wifi.powersave = 2
 ```
