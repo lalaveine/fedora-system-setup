@@ -140,7 +140,8 @@ pv `#pipe viewer - see what happens between the | with output | pv | receiver ` 
 tuned `#Tuned can optimize your performance according to metrics. tuned-adm profile powersave can help you on laptops, alot` \
 unar `#free rar decompression` \
 w3m `#the best browser` \
-p7zip `#Very high compression ratio file archiver`
+p7zip `#Very high compression ratio file archiver` \
+p7zip-plugins `#Additional plugins for p7zip`
 # iotop  `#disk usage cli monitor` \
 # nload `#Network Load Monitor` \
 # ncdu `#Directory listing CLI tool. For a gui version take a look at "baobab"` \
