@@ -31,6 +31,15 @@ do
     shift
 done
 
+
+###
+# Make infinite loop for sudo, so I don't have to enter password again
+###
+sudo echo "Starting the script"
+while :; do sudo -v; sleep 1; done &
+infiloop=$!
+
+
 ###
 # Symlink home folder to hard drive
 ###
@@ -39,10 +48,6 @@ home_folders=("Desktop" "Documents" "Downloads" "Music" "Pictures" "Public" "Tem
 
 # Change owner of /data
 sudo chown $USER:$USER /data
-
-# Make infinite loop for sudo, so I don't have to enter password again
-while :; do sudo -v; sleep 1; done &
-infiloop=$!
 
 # Remove folders from the home folder
 for folder_name in ${home_folders[@]}; do
@@ -82,7 +87,7 @@ EOL'
 # Disable wifi powersafe
 sudo bash -c 'cat > /etc/NetworkManager/conf.d/wifi-powersave-off.conf << EOL
 [connection]
-wifi.powersave = 0
+wifi.powersave = 2
 EOL'
 
 # Restart network services
@@ -334,7 +339,6 @@ sudo firewall-cmd --set-default-zone=drop
 
 #Gnome Shell Theming
 gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark'
-gsettings set org.gnome.desktop.interface cursor-theme 'Breeze_Snow'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 gsettings set org.gnome.shell.extensions.user-theme name 'Arc-Dark-solid'
 
