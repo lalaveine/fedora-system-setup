@@ -67,8 +67,6 @@ done
 
 # Firefox
 bash -c 'cat > $HOME/.mozilla/firefox/$(ls $HOME/.mozilla/firefox/ | grep default-release)/user.js << EOL
-user_pref("network.trr.mode", 2);
-user_pref("network.security.esni.enabled", true);
 user_pref("browser.startup.homepage", "about:home");
 EOL'
 
