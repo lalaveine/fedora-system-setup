@@ -55,3 +55,25 @@ Create file `/etc/NetworkManager/conf.d/wifi-powersave-off.conf` and put those l
 # Values are 0 (use default), 1 (ignore/don't touch), 2 (disable) or 3 (enable).
 wifi.powersave = 2
 ```
+
+#### Install Microsoft Fonts
+
+Instruction copied from [ArchWiki](https://wiki.archlinux.org/index.php/Microsoft_fonts).
+
+* First download Windows ISO
+
+* Next unpack it. (On Fedora you need packages `p7zip` and `p7zip-plugins`
+
+```
+$ 7z e -y Win10_1909_Russian_x64.iso sources/install.wim 
+$ 7z e -y install.wim 1/Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"*"/"*"/license.rtf} -ofonts/
+```
+
+* After that move them to /usr/shared/fonts/WindowsFonts
+
+```
+# mv fonts/ /usr/share/fonts/WindowsFonts/
+# chmod 755 /usr/share/fonts/WindowsFonts/
+# chown root:root /usr/share/fonts/WindowsFonts/
+# chmod 644 /usr/share/fonts/WindowsFonts/*
+```
