@@ -6,12 +6,14 @@ Fork of the fedora-install script by tobias (https://git.furworks.de/tobias/fedo
 
 - Firefox 
 
-To enable DNS over HTTPS and Encrypted SNI in `about.config` change
+~~To enable DNS over HTTPS and Encrypted SNI in `about.config` change~~
 
 ```
 network.trr.mode 0 -> 2
 network.security.esni.enabled false -> true
 ```
+
+Seems like it's not needed anymore. Here is the [instruction](https://support.mozilla.org/en-US/kb/firefox-dns-over-https).
 
 ### Optional
 
