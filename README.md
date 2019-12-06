@@ -78,5 +78,6 @@ $ 7z e -y install.wim 1/Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"
 # chmod 755 /usr/share/fonts/WindowsFonts/
 # chown root:root /usr/share/fonts/WindowsFonts/
 # chmod 644 /usr/share/fonts/WindowsFonts/*
+# chown root:root /usr/share/fonts/WindowsFonts/*
 # fc-cache -f
 ```
