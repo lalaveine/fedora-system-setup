@@ -81,3 +81,16 @@ $ 7z e -y install.wim 1/Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"
 # chown root:root /usr/share/fonts/WindowsFonts/*
 # fc-cache -f
 ```
+
+#### Timeshift exclude config
+
+```
+"exclude" : [
+    "/home/not_yet/**",
+    "/var/spool/abrt/**",
+    "/var/snap/**",
+    "/var/lib/flatpak/**",
+    "/var/lib/snapd/**",
+    "/root/**"
+  ]
+```
