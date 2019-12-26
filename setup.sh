@@ -394,6 +394,12 @@ gsettings set org.gnome.nautilus.list-view use-tree-view true
 #Touchpad tap to click
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 
+# Open gnome-terminal with Alt+Ctrl+T
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Open Terminal'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'gnome-terminal'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Alt><Primary>T'
+
 # Configure git
 git config --global user.name "Evgeniy Matveev"
 git config --global user.email "mfb.eugene@gmail.com"
