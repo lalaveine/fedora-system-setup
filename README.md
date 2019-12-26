@@ -5,9 +5,16 @@ Fork of the fedora-install script by tobias (https://git.furworks.de/tobias/fedo
 ## Table of Contents
 
 - [Hardware fixes](#hardware-fixes)
-    * [Resolve firmware bug in Acer Nitro 5 AN515-42 BIOS](#firmware-bug)
-    * [Get touchpad working](#get-touchpad-working)
-    * [Fix strange wifi behavior](#wifi)
+   * [Resolve firmware bug in Acer Nitro 5 AN515-42 BIOS](#resolve-firmware-bug-in-acer-nitro-5-AN515-42-BIOS)
+   * [Get touchpad working](#get-touchpad-working)
+   * [Fix strange wifi behavior](#fix-strange-wifi-behavior)
+ - [Software configuration](#software-configuration)
+   * [Instructions to enable DOH in Firefox](#instructions-to-enable-DOH-in-Firefox)
+   * [Change DNS Server to Cloudflare](#Change-DNS-Server-to-cloudflare)
+   * [Symlink home folder files to other location](#Symlink-home-folder-files-to-other-location)
+   * [Install Microsoft Fonts](#Install-Microsoft-Fonts)
+   * [Timeshift exclude config](#Timeshift-exclude-config)
+   * [Run tmux when gnome-terminal starts](#Run-tmux-when-gnome-terminal-starts)
 
 ## Hardware fixes
 
@@ -41,7 +48,9 @@ wifi.powersave = 2
 
 [There it is](https://support.mozilla.org/en-US/kb/firefox-dns-over-https).
 
-### Change DNS Server to Cloudflare. To do that in GNOME:
+### Change DNS Server to Cloudflare
+
+To do that in GNOME:
 
 1. Open Wi-Fi Settings
 
@@ -83,7 +92,7 @@ $ 7z e -y install.wim 1/Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"
 # fc-cache -f
 ```
 
-#### Timeshift exclude config
+### Timeshift exclude config
 
 Make sure that file `/etc/timeshift.json` contains this.
 
@@ -99,7 +108,7 @@ Make sure that file `/etc/timeshift.json` contains this.
   ]
 ```
 
-#### Run tmux when gnome-terminal starts
+### Run tmux when gnome-terminal starts
 
 To do that you have to:
 
