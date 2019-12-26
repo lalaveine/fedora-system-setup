@@ -94,3 +94,15 @@ $ 7z e -y install.wim 1/Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"
     "/root/**"
   ]
 ```
+
+#### Run tmux when gnome-terminal starts
+
+To do that you have to:
+
+* Go to `Menu -> Preferences -> Profile -> Unnamed -> Command`.
+
+* There tick the box `Run a custom command instead of my shell`.
+
+* Put there this line `tmux new-session -A -s main`.
+
+Credit where credit is due, I've a solution from [this answer](https://unix.stackexchange.com/a/176885). 
