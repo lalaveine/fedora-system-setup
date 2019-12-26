@@ -84,6 +84,8 @@ $ 7z e -y install.wim 1/Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"
 
 #### Timeshift exclude config
 
+Make sure that file `/etc/timeshift.json` contains this.
+
 ```
 "exclude" : [
     "/home/not_yet/**",
@@ -91,6 +93,7 @@ $ 7z e -y install.wim 1/Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"
     "/var/snap/**",
     "/var/lib/flatpak/**",
     "/var/lib/snapd/**",
+    "/boot/efi/**",
     "/root/**"
   ]
 ```
