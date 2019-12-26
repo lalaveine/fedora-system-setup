@@ -267,7 +267,8 @@ git `#VCS done right` \
 gnome-tweak-tool `#Your central place to make gnome like you want` \
 transmission `#Torrent client` \
 dconf-editor `#GUI GSettings editor` \
-timeshift `#Backup tool`
+timeshift `#Backup tool` \
+cellloid `#So far the best video player`
 # spamassassin `#Dep to make sure it is locally installed for Evolution` \
 
 ###
@@ -293,8 +294,6 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 if [ -z "$FLATPACK" ]; then
 	flatpak install -y flathub \
 	org.telegram.desktop `#Pavel Durov's messenger` \
-	org.videolan.VLC \
-	tv.kodi.Kodi
 fi
 
 
