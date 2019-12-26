@@ -93,6 +93,9 @@ EOL'
 # Restart network services
 sudo systemctl restart NetworkManager
 
+# Wait till the system reconnects to the internet (hopefully)
+sleep 180
+
 # Enable touchpad
 sudo sed -i 's/\<quiet\>/& i8042.reset i8042.nomux i8042.nopnp i8042.noloop/' /etc/default/grub
 sudo grub2-mkconfig -o "$(readlink -e /etc/grub2-efi.conf)"
