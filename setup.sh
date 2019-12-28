@@ -75,6 +75,16 @@ bash -c 'cat > $HOME/.mozilla/firefox/$(ls $HOME/.mozilla/firefox/ | grep defaul
 user_pref("browser.startup.homepage", "about:home");
 EOL'
 
+# Vim-like navigation in bash
+if !(grep -q "set -o vi" "$HOME/.bashrc"); then
+	echo "set -o vi" >> $HOME/.bashrc
+fi
+
+# and tmux
+bash -c 'cat > $HOME/.tmux.conf << EOL
+set-window-option -g mode-keys vi
+EOL'
+
 # Force X11 to use AMDGPU driver
 sudo bash -c 'cat > /etc/X11/xorg.conf.d/20-amdgpu.conf << EOL
 Section "Device"
@@ -305,11 +315,6 @@ fi
 # Its the users responsibility to choose and enable zsh, with oh-my-zsh for example
 # or set a more specific tuned profile
 ###
-
-# Vim-like navigation in bash and tmux
-if !(grep -q "set -o vi" "$HOME/.bashrc"); then
-	echo "set -o vi" >> $HOME/.bashrc
-fi
 
 # Configure sensors (defaults)
 sudo sensors-detect --auto
