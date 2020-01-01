@@ -149,7 +149,6 @@ sudo dnf upgrade --allowerasing --refresh -y
 sudo dnf install \
 -y \
 vim `#The best text editor` \
-htop `#A more visual top` \
 tmux `#Terminal multiplexer` \
 lm_sensors `#Show your systems Temparature` \
 pv `#pipe viewer - see what happens between the | with output | pv | receiver ` \
@@ -157,7 +156,8 @@ tuned `#Tuned can optimize your performance according to metrics. tuned-adm prof
 unar `#free rar decompression` \
 w3m `#the best browser` \
 p7zip `#Very high compression ratio file archiver` \
-p7zip-plugins `#Additional plugins for p7zip`
+p7zip-plugins `#Additional plugins for p7zip` \
+cockpit `#Web-based monitoring tool`
 # iotop  `#disk usage cli monitor` \
 # nload `#Network Load Monitor` \
 # ncdu `#Directory listing CLI tool. For a gui version take a look at "baobab"` \
@@ -335,11 +335,15 @@ sudo tuned-adm profile balanced
 #Battery Saving:
 #sudo tuned-adm profile powersave
 
+# Enable system monitoring tool
+sudo systemctl enable --now cockpit.socket
+
 # Virtual Machines
 sudo systemctl enable --now libvirtd
 
 # Set default firewall zone to drop
 sudo firewall-cmd --set-default-zone=drop
+
 
 ###
 # Theming and GNOME Options
