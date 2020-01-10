@@ -24,13 +24,15 @@ After reading [this](https://ubuntuforums.org/showthread.php?t=2254677), I've ad
 
 ~~EDIT: This made core 6 to drown in hardware interrupts, so I figured it's better to disable apic altogether and added `noapic` to `/etc/default/grub`~~
 
-Everything works fine
+EDIT: Everything works fine.
 
 To update grub I use this command `sudo grub2-mkconfig -o "$(readlink -e /etc/grub2-efi.conf)"`
 
 ### Get touchpad working
 
 Add to `/etc/default/grub` this `i8042.reset i8042.nomux i8042.nopnp i8042.noloop`
+
+EDIT: kernel 5.4.8, everything works fine, but I'll leave it here just in case.
 
 ### Fix strange wifi behavior 
 
