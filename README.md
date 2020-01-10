@@ -32,7 +32,9 @@ To update grub I use this command `sudo grub2-mkconfig -o "$(readlink -e /etc/gr
 
 Add to `/etc/default/grub` this `i8042.reset i8042.nomux i8042.nopnp i8042.noloop`
 
-EDIT: kernel 5.4.8, everything works fine, but I'll leave it here just in case.
+~~EDIT: kernel 5.4.8, everything works fine, but I'll leave it here just in case.~~
+
+EDIT 2: It really doesn't.
 
 ### Fix strange wifi behavior 
 
