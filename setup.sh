@@ -344,6 +344,8 @@ sudo systemctl enable --now libvirtd
 # Set default firewall zone to drop
 sudo firewall-cmd --set-default-zone=drop
 
+# Disable CUPS
+sudo systemctl disable cups
 
 ###
 # Theming and GNOME Options
