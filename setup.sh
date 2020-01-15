@@ -416,6 +416,11 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')/ custom-command 'tmux new-session -A -s main'
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')/ exit-action 'close'
 
+# TODO: Fix screenshot and screencast shortcuts so it saves to proper location
+# mkdir $HOME/Pictures/Screenshots
+# gsettings set org.gnome.gnome-screenshot auto-save-directory '/home/not_yet/Pictures/Screenshots'
+#
+
 # Configure git
 git config --global user.name "Evgeniy Matveev"
 git config --global user.email "mfb.eugene@gmail.com"
