@@ -5,7 +5,7 @@ trap '{ echo "Hey, you pressed Ctrl-C.  Time to quit." ; kill "$infiloop"; exit 
 
 if [ $(id -u) = 0 ]; then
    echo "This script changes your users gsettings and should thus not be run as root!"
-   echo "You may need to enter your password multiple times!"
+   echo "You need to enter your password only one time"
    exit 1
 fi
 
@@ -13,18 +13,13 @@ fi
 while test $# -gt 0
 do
     case "$1" in
-        --nonfree) 
-		echo "Nonfree Additions will be added"
-		NONFREE=true
-            ;;
-	--no-flatpack) 
-		echo "Flatpacks will not be installed"
-		FLATPACK=false
+	--virtual-machine) 
+		echo "Hardware specific settings will be exluded."
+		VM=true
             ;;
 	--help) 
 		echo -e "Options:  
-	--nonfree - Install non-free version of RMPFusion repo
-	--no-flatpack - Flatpacks installation will be skiped"
+	--virtual-machine - Exclude any hardware specific settings and packages.
 		exit 0
             ;;
     esac
@@ -35,7 +30,7 @@ done
 ###
 # Make infinite loop for sudo, so I don't have to enter password again
 ###
-sudo echo "Starting the script"
+sudo echo "Enter the password to start the script!"
 while :; do sudo -v; sleep 1; done &
 infiloop=$!
 
@@ -81,9 +76,7 @@ if !(grep -q "set -o vi" "$HOME/.bashrc"); then
 fi
 
 # and tmux
-bash -c 'cat > $HOME/.tmux.conf << EOL
-set-window-option -g mode-keys vi
-EOL'
+bash 
 
 # Force X11 to use AMDGPU driver
 sudo bash -c 'cat > /etc/X11/xorg.conf.d/20-amdgpu.conf << EOL
@@ -131,7 +124,7 @@ sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-r
 # This includes Nvidia Drivers and more
 ###
 
-if [ ! -z "$NONFREE" ]; then
+if [ ! -z "$VM" ]; then
 	sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 fi
 
