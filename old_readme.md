@@ -44,7 +44,7 @@ To update grub I use this command `sudo grub2-mkconfig -o "$(readlink -e /etc/gr
 
 ### Get touchpad working
 
-Add to `/etc/default/grub` this `i8042.reset i8042.nomux i8042.nopnp i8042.noloop`
+Add to `/etc/default/grub` this `i8042.nopnp`
 
 ~~EDIT: kernel 5.4.8, everything works fine, but I'll leave it here just in case.~~
 
