@@ -43,13 +43,13 @@ sudo dnf clean all
 
 
 # Add RPM-Fusion FREE repo
-sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
+#sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
 
 # Enable OpenH264 from Cisco
-sudo dnf config-manager --set-enabled fedora-cisco-openh264
+#sudo dnf config-manager --set-enabled fedora-cisco-openh264
 
 # Add official Docker repo
-sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+#sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 
 # Add mesa repo from gloriouseggroll
 sudo dnf config-manager --add-repo configs/etc/yum/mesa-aco.repo
@@ -80,11 +80,11 @@ tmux `#Terminal multiplexer` \
 lm_sensors `#Show your systems Temparature` \
 pv `#pipe viewer - see what happens between the | with output | pv | receiver ` \
 tuned `#Tuned can optimize your performance according to metrics. tuned-adm profile powersave can help you on laptops, alot` \
-unar `#free rar decompression` \
-w3m `#the best browser` \
-p7zip `#Very high compression ratio file archiver` \
-p7zip-plugins `#Additional plugins for p7zip` \
-moreutils `#A Collection Of More Useful Unix Utilities`
+#unar `#free rar decompression` \
+#w3m `#the best browser` \
+#p7zip `#Very high compression ratio file archiver` \
+#p7zip-plugins `#Additional plugins for p7zip` \
+#moreutils `#A Collection Of More Useful Unix Utilities`
 # iotop  `#disk usage cli monitor` \
 # nload `#Network Load Monitor` \
 # ncdu `#Directory listing CLI tool. For a gui version take a look at "baobab"` \
@@ -100,74 +100,74 @@ moreutils `#A Collection Of More Useful Unix Utilities`
 # Install system utils 
 ###
 
-sudo dnf install \
--y \
-exfat-utils `#Allows managing exfat (android sd cards and co)` \
-ffmpeg `#Adds Codec Support to Firefox, and in general` \
-fuse-exfat `#Allows mounting exfat` \
-fuse-sshfs `#Allows mounting servers via sshfs` \
-gvfs-fuse `#gnome<>fuse` \
-gvfs-mtp `#gnome<>android` \
-gvfs-nfs `#gnome<>ntfs` \
-gvfs-smb `#gnome<>samba` \
-dnf-plugins-core `#Provides the commands to manage your DNF repositories from the command line.` \
-xorg-x11-drv-amdgpu `#AMDGPU driver for X11` 
+#sudo dnf install \
+#-y \
+#exfat-utils `#Allows managing exfat (android sd cards and co)` \
+#ffmpeg `#Adds Codec Support to Firefox, and in general` \
+#fuse-exfat `#Allows mounting exfat` \
+#fuse-sshfs `#Allows mounting servers via sshfs` \
+#gvfs-fuse `#gnome<>fuse` \
+#gvfs-mtp `#gnome<>android` \
+#gvfs-nfs `#gnome<>ntfs` \
+#gvfs-smb `#gnome<>samba` \
+#dnf-plugins-core `#Provides the commands to manage your DNF repositories from the command line.` \
+#xorg-x11-drv-amdgpu `#AMDGPU driver for X11` 
 
 # Install OpenH264 from Cisco
 
-sudo dnf install \
--y \
-gstreamer1-plugin-openh264 \
-gstreamer1-vaapi
+#sudo dnf install \
+#-y \
+#gstreamer1-plugin-openh264 \
+#gstreamer1-vaapi
 
 ###
 # Install themes 
 ###
 
-sudo dnf install \
--y \
-arc-theme `#A more comfortable GTK/Gnome-Shell Theme` \
-papirus-icon-theme `#A quite nice icon theme` 
+#sudo dnf install \
+#-y \
+#arc-theme `#A more comfortable GTK/Gnome-Shell Theme` \
+#papirus-icon-theme `#A quite nice icon theme` 
 
 ###
 # Install fonts 
 ###
 
-sudo dnf install \
--y \
-'mozilla-fira-*' `#A nice font family` \
-adobe-source-code-pro-fonts `#The most beautiful monospace font around`
+#sudo dnf install \
+#-y \
+#'mozilla-fira-*' `#A nice font family` \
+#adobe-source-code-pro-fonts `#The most beautiful monospace font around`
 
 ###
 # Install plugins 
 ###
 
-sudo dnf install \
--y \
+#sudo dnf install \
+#-y \
 `# NetworkManager`\
-NetworkManager-openvpn-gnome `#To enforce that its possible to import .ovpn files in the settings` \
+#NetworkManager-openvpn-gnome `#To enforce that its possible to import .ovpn files in the settings` \
 `# Nautilus` \
-nautilus-extensions `#What it says on the tin` \
-file-roller-nautilus `#More Archives supported in nautilus` 
+#nautilus-extensions `#What it says on the tin` \
+#file-roller-nautilus `#More Archives supported in nautilus` 
 
 
 ###
 # GNOME Extentions 
 ###
-sudo dnf install \
--y \
-gnome-shell-extension-dash-to-dock `#dash for gnome` \
-gnome-shell-extension-user-theme `#Enables theming the gnome shell` \
-gnome-shell-extension-drive-menu `#Enables nice menu with incerted drives`
+#sudo dnf install \
+#-y \
+#gnome-shell-extension-dash-to-dock `#dash for gnome` \
+#gnome-shell-extension-user-theme `#Enables theming the gnome shell` \
+#gnome-shell-extension-drive-menu `#Enables nice menu with incerted drives`
 
 # Download script to install extension from extensions.gnome.org
-wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
-chmod 755 gnome-shell-extension-installer
-sudo cp gnome-shell-extension-installer /usr/bin/
-rm gnome-shell-extension-installer
+#wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
+#chmod 755 gnome-shell-extension-installer
+#sudo cp gnome-shell-extension-installer /usr/bin/
+#rm gnome-shell-extension-installer
 
 # LockKeys extension - Num/Caps indicators on the top bar
-gnome-shell-extension-installer 36
+#gnome-shell-extension-installer 36
 
 
 ###
@@ -189,8 +189,8 @@ sudo dnf install \
 -y \
 gnome-tweak-tool `#Your central place to make gnome like you want` \
 dconf-editor `#GUI GSettings editor` \
-timeshift `#Backup tool` \
-cockpit `#Web-based monitoring tool`
+#timeshift `#Backup tool` \
+#cockpit `#Web-based monitoring tool`
 
 
 ###
@@ -198,11 +198,11 @@ cockpit `#Web-based monitoring tool`
 ###
 
 # Configure flathub
-sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Install flatpaks
 
-flatpak install -y flathub \
+flatpak install -y --user flathub \
 	org.telegram.desktop `#Pavel Durov's messenger` 
 
 
@@ -211,18 +211,18 @@ flatpak install -y flathub \
 ###
 
 # only run this commands on real hardware
-if [ -z "$VM" ]; then
+#if [ -z "$VM" ]; then
 	# Force X11 to use AMDGPU driver
-	sudo cp configs/etc/X11/20-amdgpu.conf /etc/X11/xorg.conf.d/
+#	sudo cp configs/etc/X11/20-amdgpu.conf /etc/X11/xorg.conf.d/
 
 	# Disable wifi powersafe
-	sudo cp configs/etc/NetworkManager/wifi-powersave-off.conf /etc/NetworkManager/conf.d/
+#	sudo cp configs/etc/NetworkManager/wifi-powersave-off.conf /etc/NetworkManager/conf.d/
 
 	# Edit grub options
-	sudo cp /etc/default/grub /etc/default/grub.backup
-	sudo sed -i 's/\<quiet\>/& i8042.reset i8042.nomux i8042.nopnp i8042.noloop ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.1/' /etc/default/grub
-	sudo grub2-mkconfig -o "$(readlink -e /etc/grub2-efi.conf)"
-fi
+#	sudo cp /etc/default/grub /etc/default/grub.backup
+#	sudo sed -i 's/\<quiet\>/& i8042.reset i8042.nomux i8042.nopnp i8042.noloop ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.1/' /etc/default/grub
+#	sudo grub2-mkconfig -o "$(readlink -e /etc/grub2-efi.conf)"
+#fi
 
 # Choose tuned-adm profile
 if [ -z "$VM" ]; then
@@ -245,25 +245,25 @@ sudo sensors-detect --auto
 sudo systemctl enable --now tuned
 
 # Enable system monitoring tool
-sudo systemctl enable --now cockpit.socket
+#sudo systemctl enable --now cockpit.socket
 
 # Virtual Machines
-sudo systemctl enable --now libvirtd
+#sudo systemctl enable --now libvirtd
 
 # Set default firewall zone to drop
 sudo firewall-cmd --set-default-zone=drop
 
 # Disable CUPS
-sudo systemctl disable cups
+#sudo systemctl disable cups
 
 ###
 # Symlink home folder to hard drive
 ###
 
 # Allow write to /data/ for everyone
-sudo chmod 777 /data/
+#sudo chmod 777 /data/
 
-bash scripts/syslink-home-folder.sh
+#bash scripts/syslink-home-folder.sh
 
 ###
 # User configuration
@@ -278,12 +278,12 @@ user_pref("browser.startup.homepage", "about:home");
 EOL'
 
 # Vim-like navigation in bash
-if !(grep -q "set -o vi" "$HOME/.bashrc"); then
-	echo "set -o vi" >> $HOME/.bashrc
-fi
+#if !(grep -q "set -o vi" "$HOME/.bashrc"); then
+#	echo "set -o vi" >> $HOME/.bashrc
+#fi
 
 # Copy tmux config file
-cp configs/user/.tmux.conf $HOME/
+#cp configs/user/.tmux.conf $HOME/
 
 # Configure git
 git config --global user.name "Evgenii Matveev"
