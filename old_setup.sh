@@ -179,7 +179,7 @@ sudo dnf install \
 virt-manager `#A gui to manage virtual machines` \
 libvirt \
 libguestfs-tools `#Resize Vm Images and convert them` \
-docker-ce
+#docker-ce
 
 ###
 # Useful applications 
