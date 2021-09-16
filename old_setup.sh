@@ -52,7 +52,7 @@ sudo dnf clean all
 #sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 
 # Add mesa repo from gloriouseggroll
-sudo dnf config-manager --add-repo configs/etc/yum/mesa-aco.repo
+#sudo dnf config-manager --add-repo configs/etc/yum/mesa-aco.repo
 
 # Enable Google Chrome repo
 dnf config-manager --set-enabled google-chrome
