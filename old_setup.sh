@@ -4,22 +4,22 @@
 trap '{ echo "Hey, you pressed Ctrl-C.  Time to quit." ; kill "$infiloop"; exit 1; }' INT
 
 if [ $(id -u) = 0 ]; then
-   echo "This script changes your users gsettings and should thus not be run as root!"
-   echo "You need to enter your password only one time"
+   echo 'This script changes your users gsettings and should thus not be run as root!'
+   echo 'You need to enter your password only one time'
    exit 1
 fi
 
 
 while test $# -gt 0
 do
-    case "$1" in
+    case '$1' in
 	--virtual-machine) 
-		echo "Hardware specific settings will be exluded."
+		echo 'Hardware specific settings will be exluded.'
 		VM=true
             ;;
 	--help) 
 		echo -e "Options:  
-	--virtual-machine - Exclude any hardware specific settings and packages.
+	--virtual-machine - Exclude any hardware specific settings and packages."
 		exit 0
             ;;
     esac
@@ -54,12 +54,9 @@ sudo dnf clean all
 # Add mesa repo from gloriouseggroll
 #sudo dnf config-manager --add-repo configs/etc/yum/mesa-aco.repo
 
-# Enable Google Chrome repo
-dnf config-manager --set-enabled google-chrome
-
 # Add VS Code repo
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo dnf config-manager --add-repo configs/etc/yum/vscode.repo
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
 ###
 # Force update the whole system to the latest and greatest
@@ -144,9 +141,9 @@ tuned `#Tuned can optimize your performance according to metrics. tuned-adm prof
 
 #sudo dnf install \
 #-y \
-`# NetworkManager`\
+#`# NetworkManager`\
 #NetworkManager-openvpn-gnome `#To enforce that its possible to import .ovpn files in the settings` \
-`# Nautilus` \
+#`# Nautilus` \
 #nautilus-extensions `#What it says on the tin` \
 #file-roller-nautilus `#More Archives supported in nautilus` 
 
@@ -203,8 +200,14 @@ flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/fl
 # Install flatpaks
 
 flatpak install -y --user flathub \
-	org.telegram.desktop `#Pavel Durov's messenger` 
+	org.telegram.desktop `#Pavel Durov's messenger` \
+	com.valvesoftware.Steam 
 
+flatpak update --user
+
+#flatpak override --env=FLATPAK_GL_DRIVERS=mesa-git --user
+
+flatpak override --user --device=all com.valvesoftware.Steam
 
 ###
 # System configuration
@@ -234,7 +237,7 @@ if [ ! -z "$VM" ]; then
 fi
 
 # Detect hardware sensors
-sudo sensors-detect --auto
+#sudo sensors-detect --auto
 
 
 ###
@@ -242,7 +245,7 @@ sudo sensors-detect --auto
 ### 
 
 # Enable tuned-adm
-sudo systemctl enable --now tuned
+#sudo systemctl enable --now tuned
 
 # Enable system monitoring tool
 #sudo systemctl enable --now cockpit.socket
@@ -251,7 +254,7 @@ sudo systemctl enable --now tuned
 #sudo systemctl enable --now libvirtd
 
 # Set default firewall zone to drop
-sudo firewall-cmd --set-default-zone=drop
+#sudo firewall-cmd --set-default-zone=drop
 
 # Disable CUPS
 #sudo systemctl disable cups
@@ -270,12 +273,12 @@ sudo firewall-cmd --set-default-zone=drop
 ###
 
 # Configure GNOME
-bash scripts/gnome-config.sh
+#bash scripts/gnome-config.sh
 
 # Firefox
-bash -c 'cat > $HOME/.mozilla/firefox/$(ls $HOME/.mozilla/firefox/ | grep default-release)/user.js << EOL
-user_pref("browser.startup.homepage", "about:home");
-EOL'
+#bash -c 'cat > $HOME/.mozilla/firefox/$(ls $HOME/.mozilla/firefox/ | grep default-release)/user.js << EOL
+#user_pref("browser.startup.homepage", "about:home");
+#EOL'
 
 # Vim-like navigation in bash
 #if !(grep -q "set -o vi" "$HOME/.bashrc"); then
@@ -286,12 +289,13 @@ EOL'
 #cp configs/user/.tmux.conf $HOME/
 
 # Configure git
-git config --global user.name "Evgenii Matveev"
-git config --global user.email "mfb.eugene@gmail.com"
-git config --global core.autocrlf input
+#git config --global user.name "Evgenii Matveev"
+#git config --global user.email "mfb.eugene@gmail.com"
+#git config --global core.autocrlf input
 
 # Kill infinite sudo loop
 kill "$infiloop"
 
 #The user needs to reboot to apply all changes.
-echo "Please Reboot" && exit 0
+echo 'Please Reboot' && exit 0
+
